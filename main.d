@@ -4,6 +4,7 @@ import parsers.model.BookmarkConverter;
 import parsers.ExportedBookmarkConverter;
 import processes.ProcessFactory;
 import parsers.ImportedBookmarkConverter;
+import parsers.LoggerBookmarkConverter;
 
 import tango.io.FileScan;
 import tango.text.Util;
@@ -75,7 +76,7 @@ int main() {
 				}
 			}
 		} else { 
-			setup.logger.write(runners[i].line);	
+			setup.logger.write(LoggerBookmarkConverter.encode(runners[i].line));
 		}
 	}
 	
@@ -164,7 +165,7 @@ private:
 			Trace("We have managed to read lines from our log file.");
 			Trace("This will keep you from having repeat downloads.");	
 		}
-		_compare = new ExportedBookmarkConverter(log_contents);
+		_compare = new LoggerBookmarkConverter(log_contents);
 		Trace.formatln("You have downloaded {} YouTube videos as mp3s in the past.", compare.get.length);
 	}
 		

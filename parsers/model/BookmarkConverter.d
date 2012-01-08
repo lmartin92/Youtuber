@@ -1,4 +1,6 @@
 private import tango.text.Util;
+	
+import tango.util.log.Trace;
 
 interface BookmarkLine {
 public:
@@ -37,9 +39,10 @@ class BookmarkDeduplicator{
 		foreach(s; source) { 
 			bool add = true;
 				
-			foreach(t; test) {  
-				if(t.line == s.line)
-					add = false;		
+			foreach(t; test) { 
+				if(t.url == s.url) {
+					add = false;
+				}		
 			}
 			
 			if(add)

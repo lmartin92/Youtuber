@@ -45,9 +45,14 @@
       <LastGenOutput>/home/lmartin92/Projects/Youtuber/Youtuber/objs/BookmarkConverter.o</LastGenOutput>
     </Compile>
     <Compile Include="parsers\ExportedBookmarkConverter.d">
-      <LastGenOutput>/home/lmartin92/Projects/Youtuber/Youtuber/objs/BookmarkConverter.o</LastGenOutput>
+      <LastGenOutput>/home/lmartin92/Projects/Youtuber/Youtuber/objs/ExportedBookmarkConverter.o</LastGenOutput>
     </Compile>
-    <Compile Include="parsers\ImportedBookmarkConverter.d" />
-    <Compile Include="parsers\ConfigurableBookmarkConverter.d" />
+    <Compile Include="parsers\ImportedBookmarkConverter.d">
+      <LastGenOutput>/home/lmartin92/Projects/Youtuber/Youtuber/objs/ImportedBookmarkConverter.o</LastGenOutput>
+    </Compile>
+    <Compile Include="parsers\ConfigurableBookmarkConverter.d">
+      <LastGenOutput>/home/lmartin92/Projects/Youtuber/Youtuber/objs/ConfigurableBookmarkConverter.o</LastGenOutput>
+    </Compile>
+    <Compile Include="parsers\LoggerBookmarkConverter.d" />
   </ItemGroup>
 </Project>

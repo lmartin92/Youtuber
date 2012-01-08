@@ -43,8 +43,8 @@ public:
 		_completed = renamer.rename(_line);
 	}
 	
-	char[] line() {
-		return _line.line;
+	BookmarkLine line() {
+		return _line;
 	}
 	
 	bool completed() {
