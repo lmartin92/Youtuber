@@ -26,6 +26,7 @@
     <Folder Include="parsers\" />
     <Folder Include="processes\" />
     <Folder Include="parsers\model\" />
+    <Folder Include="threading\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="io\Env.d">
@@ -47,5 +48,6 @@
       <LastGenOutput>/home/lmartin92/Projects/Youtuber/Youtuber/objs/BookmarkConverter.o</LastGenOutput>
     </Compile>
     <Compile Include="parsers\ImportedBookmarkConverter.d" />
+    <Compile Include="parsers\ConfigurableBookmarkConverter.d" />
   </ItemGroup>
 </Project>

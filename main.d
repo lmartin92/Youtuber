@@ -3,6 +3,7 @@ import io.Env;
 import parsers.model.BookmarkConverter;
 import parsers.ExportedBookmarkConverter;
 import processes.ProcessFactory;
+import parsers.ImportedBookmarkConverter;
 
 import tango.io.FileScan;
 import tango.text.Util;
@@ -13,7 +14,7 @@ import tango.io.Console;
 import tango.core.Thread;
 	
 int main() {
-	ExportedBookmarkDeduplicator	dedup;
+	BookmarkDeduplicator			dedup;
 	BookmarkLine[]					downloads;
 	char[][char[]] 					filter;
 	ProcessFactory					factory;
@@ -29,7 +30,7 @@ int main() {
 		setup.logger.close;	
 	}
 		
-	dedup = new ExportedBookmarkDeduplicator(setup.bookmarks.get, setup.compare.get);
+	dedup = new BookmarkDeduplicator(setup.bookmarks.get, setup.compare.get);
 	Trace("We are now removing any duplicate downloads.");
 	downloads = dedup.deduplicate;
 	Trace.formatln("You have {} videos to download as mp3s.", downloads.length);
