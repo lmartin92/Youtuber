@@ -43,7 +43,7 @@ private:
 
 public:
 	public this(char[] line) {
-		_line = line;
+		this._line = line;
 	}
 		
 	char[] line() {
@@ -60,7 +60,6 @@ public:
 			int us, ue;
 			us = locatePattern(line,  "\"url\": \"") + 8;
 			ue = locatePattern(line, test, us);	
-			
 			_url = _line[us .. ue];	
 		}
 		
@@ -73,9 +72,7 @@ public:
 		void parse_name() { 
 			int ns , ne;
 			ns = locatePattern(line, "\"name\": \"") + 9;
-			ne = locatePattern(line, "\"", ns);
-			
-			//Trace(_line[ns .. ne]);	
+			ne = locatePattern(line, "\"", ns);	
 			
 			_name = _line[ns .. ne];	
 		}

@@ -96,6 +96,7 @@ private:
 	Thread[3]			threads;
 	bool 				_wait = true;
 	int					_error = 0;
+	bool 				which = false;
 		
 	char[] get_bookmarks_file() {
 		char[] ret;
@@ -108,6 +109,12 @@ private:
 				break;
 			}   
 		}
+		
+		if(ret == "") { 
+			ret = homeFolder ~ "/.config/google-chrome/Default/Bookmarks";		
+		}
+		
+		which = true;
 	
 		return ret;
 	}
@@ -130,7 +137,10 @@ private:
 		} else {
 			Trace.formatln("We have located your bookmarks file at {}.", bfile);	
 		}
-		_bookmarks = new ExportedBookmarkConverter(cast(char[])File.get(bfile));
+		if(!which)
+			_bookmarks = new ExportedBookmarkConverter(cast(char[])File.get(bfile));
+		else
+			_bookmarks = new ImportedBookmarkConverter(cast(char[])File.get(bfile));
 		Trace("Your bookmarks file has been read.");
 		if(_bookmarks.get.length == 0) {
 			Trace("You apparently have not bookmarked any YouTube videos.");
