@@ -1,3 +1,27 @@
+private import parsers.ConfigurableBookmarkConverter;
+
+void init_logger_converter() {
+	instruction inst3;
+	inst3.which_lines ~= 0;
+	inst3.uniq_ident = ":::";
+	inst3.pattern = "youtube";
+	inst3.locatables[placement.us] ~= ",,,";
+	inst3.locatables[placement.ue] ~= ":::";
+	inst3.locatables[placement.ns] ~= ":::";
+	inst3.locatables[placement.ne] ~= ";;;";
+	inst3.locatables[placement.as] ~= ";;;";
+	inst3.locatables[placement.ae] ~= "...";
+	inst3.which_locatable[placement.us] = 0;
+	inst3.which_locatable[placement.ue] = 0;
+	inst3.which_locatable[placement.ns] = 0;
+	inst3.which_locatable[placement.ne] = 0;
+	inst3.which_locatable[placement.as] = 0;
+	inst3.which_locatable[placement.ae] = 0;
+	
+	ConfigurableBookmarkConverter.add_iset(inst3);
+}
+
+/*
 private import tango.text.Util;
 private import tango.io.stream.Lines;
 private import tango.io.device.Array;
@@ -57,3 +81,4 @@ public:
 		return ",,," ~ line.url ~ ":::" ~ line.name ~ ";;;" ~ line.actual_name ~ "...";	
 	}
 }
+*/

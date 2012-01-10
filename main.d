@@ -77,7 +77,7 @@ int main() {
 				}
 			}
 		} else { 
-			setup.logger.write(LoggerBookmarkConverter.encode(runners[i].line));
+			setup.logger.write(ConfigurableBookmarkConverter.encode(runners[i].line));
 		}
 	}
 	
@@ -90,10 +90,10 @@ int main() {
 
 class Setup {
 private:
-	Env 				_env;
-	BookmarkConverter 	_bookmarks;
-	Logger				_logger;
-	BookmarkConverter	_compare;
+	Env 							_env;
+	BookmarkConverter 				_bookmarks;
+	Logger							_logger;
+	BookmarkConverter				_compare;
 		
 	Thread[3]			threads;
 	bool 				_wait = true;
@@ -140,9 +140,9 @@ private:
 			Trace.formatln("We have located your bookmarks file at {}.", bfile);	
 		}
 		if(!which)
-			_bookmarks = new ExportedBookmarkConverter(cast(char[])File.get(bfile));
+			_bookmarks = new ConfigurableBookmarkConverter(cast(char[])File.get(bfile));
 		else
-			_bookmarks = new ImportedBookmarkConverter(cast(char[])File.get(bfile));
+			_bookmarks = new ConfigurableBookmarkConverter(cast(char[])File.get(bfile));
 		Trace("Your bookmarks file has been read.");
 		if(_bookmarks.get.length == 0) {
 			Trace("You apparently have not bookmarked any YouTube videos.");
@@ -166,7 +166,7 @@ private:
 			Trace("We have managed to read lines from our log file.");
 			Trace("This will keep you from having repeat downloads.");	
 		}
-		_compare = new LoggerBookmarkConverter(log_contents);
+		_compare = new ConfigurableBookmarkConverter(log_contents);
 		Trace.formatln("You have downloaded {} YouTube videos as mp3s in the past.", compare.get.length);
 	}
 		
@@ -188,6 +188,9 @@ public:
 	}
 	
 	void setup() {
+		init_logger_converter();
+		init_exported_converter();
+		init_imported_converter();
 		threads[0] = new Thread(&setup_env);
 		threads[1] = new Thread(&setup_bookmarks);
 		threads[2] = new Thread(&setup_compare);

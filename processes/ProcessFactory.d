@@ -1,5 +1,4 @@
 private import tango.text.Util;
-private import parsers.ExportedBookmarkConverter;
 private import parsers.model.BookmarkConverter;
 private import Path = tango.io.Path;
 private import tango.util.log.Trace;

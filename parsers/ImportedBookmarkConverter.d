@@ -1,8 +1,29 @@
-private import tango.text.Util;
-private import tango.io.stream.Lines;
-private import tango.io.device.Array;
-private import parsers.model.BookmarkConverter;
+private import parsers.ConfigurableBookmarkConverter;
 
+void init_imported_converter() {
+	instruction inst;
+	inst.which_lines ~= 0;
+	inst.which_lines ~= 2;
+	inst.uniq_ident = "url";
+	inst.pattern = "youtube";
+	inst.locatables[placement.us] ~= "\"url\": \"";
+	inst.locatables[placement.ue] ~= "\"";
+	inst.locatables[placement.ue] ~= "&feature";
+	inst.locatables[placement.ns] ~= "\"name\": \"";
+	inst.locatables[placement.ne] ~= "\"";
+	inst.locatables[placement.as] ~= "watch?v=";
+	inst.locatables[placement.ae] ~= "\"";
+	inst.locatables[placement.ae] ~= "&feature";
+	inst.which_locatable[placement.us] = 0;
+	inst.which_locatable[placement.ue] = 0;
+	inst.which_locatable[placement.ns] = 0;
+	inst.which_locatable[placement.ne] = 0;
+	inst.which_locatable[placement.as] = 0;
+	inst.which_locatable[placement.ae] = 0;
+	
+	ConfigurableBookmarkConverter.add_iset(inst);
+}
+/*
 debug (BookmarkConverter) {
 	import tango.util.log.Trace;
 	import tango.io.device.File;
@@ -131,4 +152,4 @@ public:
 			parseText();
 		return lines;
 	}
-}
+}*/

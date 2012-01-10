@@ -2,8 +2,6 @@ private import parsers.model.BookmarkConverter;
 private import tango.text.Util;
 private import tango.io.stream.Lines;
 private import tango.io.device.Array;
-	
-import tango.util.log.Trace;
 
 debug (BookmarkConverter) {
 	void main() {
@@ -233,5 +231,9 @@ public:
 	
 	static void add_iset(instruction i_set) {
 		i_sets ~= i_set;
+	}
+		
+	static char[] encode(BookmarkLine line) {
+		return ",,," ~ line.url ~ ":::" ~ line.name ~ ";;;" ~ line.actual_name ~ "...";	
 	}
 }
