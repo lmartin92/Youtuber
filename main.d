@@ -18,11 +18,15 @@ import tango.core.Thread;
 int main() {
 	BookmarkDeduplicator			dedup;
 	BookmarkLine[]					downloads;
-	char[][char[]] 					filter;
 	ProcessFactory					factory;
 	Runner[]						runners;
 	Setup 							setup = new Setup();
-	bool 							go;
+	
+	Replacement[] 					replacements;
+	Replacement 					replacement;
+	replacement.to_replace 			= ' '; 
+	replacement.replacement 		= '_';
+	replacements 					~= replacement;
 		
 	setup.setup();	
 	if(!setup.wait) {
@@ -36,16 +40,12 @@ int main() {
 	Trace("We are now removing any duplicate downloads.");
 	downloads = dedup.deduplicate;
 	Trace.formatln("You have {} videos to download as mp3s.", downloads.length);
-		
-	Replacement[] replacements;
-	Replacement s;
-	s.to_replace = ' '; s.replacement = '_';
-	replacements ~= s;
+	
 	factory = new ProcessFactory(downloads, new Renamer(replacements));
 	Trace("We have now setup our excellent renaming tool.");
 	Trace("This gives your files nice names.");
 		
-	// fromt his point these could be ran in granularized groups
+	// from this point these could be ran in granularized groups
 	runners = factory.get;
 	Trace("About to start downloads");
 	for(int i = 0; i < runners.length; i++) {
@@ -98,7 +98,6 @@ private:
 	Thread[3]			threads;
 	bool 				_wait = true;
 	int					_error = 0;
-	bool 				which = false;
 		
 	char[] get_bookmarks_file() {
 		char[] ret;
@@ -115,8 +114,6 @@ private:
 		if(ret == "") { 
 			ret = homeFolder ~ "/.config/google-chrome/Default/Bookmarks";		
 		}
-		
-		which = true;
 	
 		return ret;
 	}
@@ -139,10 +136,7 @@ private:
 		} else {
 			Trace.formatln("We have located your bookmarks file at {}.", bfile);	
 		}
-		if(!which)
-			_bookmarks = new ConfigurableBookmarkConverter(cast(char[])File.get(bfile));
-		else
-			_bookmarks = new ConfigurableBookmarkConverter(cast(char[])File.get(bfile));
+		_bookmarks = new ConfigurableBookmarkConverter(cast(char[])File.get(bfile));
 		Trace("Your bookmarks file has been read.");
 		if(_bookmarks.get.length == 0) {
 			Trace("You apparently have not bookmarked any YouTube videos.");
