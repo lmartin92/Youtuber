@@ -8,7 +8,7 @@ debug (BookmarkConverter) {
 	import tango.io.device.File;
 
 	void main() {
-		char text[] = cast(char[])File.get("/home/lmartin92/Documents/bookmarks_1_3_12.html");
+		char text[] = cast(char[])File.get("/home/lmartin92/Documents/bookmarks_1_9_12.html");
 		auto c = new BookmarkConverter(text);
 		auto d = new BookmarkConverter(text);
 				

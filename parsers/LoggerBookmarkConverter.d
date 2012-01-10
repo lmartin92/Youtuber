@@ -54,6 +54,6 @@ public:
 	}
 	
 	static char[] encode(BookmarkLine line) {
-		return line.url ~ ":::" ~ line.name ~ ":::" ~ line.actual_name;	
+		return ",,," ~ line.url ~ ":::" ~ line.name ~ ";;;" ~ line.actual_name ~ "...";	
 	}
 }

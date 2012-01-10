@@ -42,6 +42,7 @@ class BookmarkDeduplicator{
 			foreach(t; test) { 
 				if(t.url == s.url) {
 					add = false;
+					break;
 				}		
 			}
 			

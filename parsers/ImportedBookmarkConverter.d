@@ -1,6 +1,5 @@
 private import tango.text.Util;
 private import tango.io.stream.Lines;
-private import tango.io.stream.Map;
 private import tango.io.device.Array;
 private import parsers.model.BookmarkConverter;
 

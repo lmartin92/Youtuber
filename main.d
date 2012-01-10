@@ -5,6 +5,7 @@ import parsers.ExportedBookmarkConverter;
 import processes.ProcessFactory;
 import parsers.ImportedBookmarkConverter;
 import parsers.LoggerBookmarkConverter;
+import parsers.ConfigurableBookmarkConverter;
 
 import tango.io.FileScan;
 import tango.text.Util;
