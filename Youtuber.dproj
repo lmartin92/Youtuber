@@ -27,6 +27,7 @@
     <Folder Include="processes\" />
     <Folder Include="parsers\model\" />
     <Folder Include="threading\" />
+    <Folder Include="configuration\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="io\Env.d">
@@ -53,6 +54,9 @@
     <Compile Include="parsers\ConfigurableBookmarkConverter.d">
       <LastGenOutput>/home/lmartin92/Projects/Youtuber/Youtuber/objs/ConfigurableBookmarkConverter.o</LastGenOutput>
     </Compile>
-    <Compile Include="parsers\LoggerBookmarkConverter.d" />
+    <Compile Include="parsers\LoggerBookmarkConverter.d">
+      <LastGenOutput>/home/lmartin92/Projects/Youtuber/Youtuber/objs/LoggerBookmarkConverter.o</LastGenOutput>
+    </Compile>
+    <Compile Include="configuration\Conf.d" />
   </ItemGroup>
 </Project>

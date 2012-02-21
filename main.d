@@ -111,6 +111,15 @@ private:
 			}   
 		}
 		
+		scan(expandTilde("~/Documents/"), ".html");
+	
+		foreach(f; scan.files) {
+			if(containsPattern(f.toString, "bookmarks")) { 
+				ret = f.toString;
+				break;
+			}   
+		}
+		
 		if(ret == "") { 
 			ret = homeFolder ~ "/.config/google-chrome/Default/Bookmarks";		
 		}

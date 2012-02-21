@@ -9,11 +9,13 @@ void init_imported_converter() {
 	imported.locatables[placement.us] ~= "\"url\": \"";
 	imported.locatables[placement.ue] ~= "\"";
 	imported.locatables[placement.ue] ~= "&feature";
+	imported.locatables[placement.ue] ~= "&list";
 	imported.locatables[placement.ns] ~= "\"name\": \"";
 	imported.locatables[placement.ne] ~= "\"";
 	imported.locatables[placement.as] ~= "watch?v=";
 	imported.locatables[placement.ae] ~= "\"";
 	imported.locatables[placement.ae] ~= "&feature";
+	imported.locatables[placement.ae] ~= "&list";
 	imported.which_locatable[placement.us] = 0;
 	imported.which_locatable[placement.ue] = 0;
 	imported.which_locatable[placement.ns] = 0;

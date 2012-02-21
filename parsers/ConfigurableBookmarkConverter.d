@@ -13,6 +13,7 @@ debug (BookmarkConverter) {
 		inst.locatables[placement.us] ~= "\"url\": \"";
 		inst.locatables[placement.ue] ~= "\"";
 		inst.locatables[placement.ue] ~= "&feature";
+		inst.locatables[placement.ue] ~= "&list";
 		inst.locatables[placement.ns] ~= "\"name\": \"";
 		inst.locatables[placement.ne] ~= "\"";
 		inst.locatables[placement.as] ~= "watch?v=";
@@ -32,6 +33,7 @@ debug (BookmarkConverter) {
 		inst2.locatables[placement.us] ~= "HREF=\"";
 		inst2.locatables[placement.ue] ~= "\"";
 		inst2.locatables[placement.ue] ~= "&feature";
+		inst2.locatables[placement.ue] ~= "&list";
 		inst2.locatables[placement.ns] ~= "\">";
 		inst2.locatables[placement.ne] ~= `</A>`;
 		inst2.locatables[placement.as] ~= "watch?v=";
