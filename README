@@ -1,2 +1,14 @@
 Important, all code is copyright Lester L. Martin II.
 License is BSD
+
+I'm horrible at gitignore file and fixing which files are in git at the moment.
+I'll fix it later on when I'm not busy actually coding this project, but fixing
+issues.
+
+The good part to this little issue is, if you like in my bin/Debug folder
+is the Youtuber app (which you may try on a linux machine). It can now do
+exported bookmark detection (as long as in ~/Documents), and import bookmarks
+from Google Chrome (which basically means it finds the directory where 
+Google Chrome stores its bookmarks and uses it). So bookmark away and download
+youtube videos as you like. This project depends on youtube-dl and ffmpeg.
+You can pretty much guess where you need to go from there to encode mp3s.
