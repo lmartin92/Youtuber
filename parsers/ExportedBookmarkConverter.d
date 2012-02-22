@@ -7,14 +7,14 @@ void init_exported_converter() {
 	exported.pattern = "youtube";
 	exported.locatables[placement.us] ~= "HREF=\"";
 	exported.locatables[placement.ue] ~= "\"";
-	exported.locatables[placement.ue] ~= "&feature";
 	exported.locatables[placement.ue] ~= "&list";
+	exported.locatables[placement.ue] ~= "&feature";
 	exported.locatables[placement.ns] ~= "\">";
 	exported.locatables[placement.ne] ~= `</A>`;
 	exported.locatables[placement.as] ~= "watch?v=";
 	exported.locatables[placement.ae] ~= "\"";
-	exported.locatables[placement.ae] ~= "&feature";
 	exported.locatables[placement.ae] ~= "&list";
+	exported.locatables[placement.ae] ~= "&feature";
 	exported.which_locatable[placement.us] = 0;
 	exported.which_locatable[placement.ue] = 0;
 	exported.which_locatable[placement.ns] = 0;

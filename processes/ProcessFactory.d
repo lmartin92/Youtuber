@@ -27,6 +27,8 @@ public:
 			
 		process = new Process(true, args);
 		Trace.formatln("Downloading: {} .", _line.url);
+		Trace.formatln("Name: {} .", _line.actual_name);
+		Trace.formatln("Rename To: {} .", _line.name);
 			
 		process.execute;
 	}

@@ -2,6 +2,8 @@ private import parsers.model.BookmarkConverter;
 private import tango.text.Util;
 private import tango.io.stream.Lines;
 private import tango.io.device.Array;
+private import ArrayMethods = tango.core.Array;
+import tango.util.log.Trace;
 
 debug (BookmarkConverter) {
 	void main() {
@@ -124,31 +126,62 @@ private:
 	char[] 		_name;
 	char[] 		_actual_name;
 	instruction inst;
-		
+	
 	int[] pull_loc(placement start, placement end) {
-		int sr, er, si, ei;
+		// test if it is in there, if so give location
+		int test_and_locate(char[] loc, bool add_length = false, int start = 0) {
+			int ret = -1;
 			
-		for(int i = 0; i < inst.locatables[start].length; i++)
-			if(containsPattern(_line, inst.locatables[start][i]))
-				si = i;
+			if(containsPattern(_line, loc)) {
+				ret = locatePattern(_line, loc, start);
+				
+				if(add_length)
+					ret += loc.length;
+			}
 			
-		for(int i = 0; i < inst.locatables[end].length; i++)
-			if(containsPattern(_line, inst.locatables[end][i]))
-				ei = i;
-			
-		sr = locatePattern(_line, inst.locatables[start][si], sr) + inst.locatables[start][si].length;
-		er = locatePattern(_line, inst.locatables[end][ei], sr);
-			
-		for(int i = 0; i < inst.which_locatable[start]; i++)
-			sr = locatePattern(_line, inst.locatables[start][si], sr) + inst.locatables[start][si].length;
-			
-		for(int i = 0; i < inst.which_locatable[start]; i++)
-			er = locatePattern(_line, inst.locatables[end][ei], er);
+			return ret;
+		}
 		
-		int[] ret;
-		ret ~= sr; 
-		ret ~= er;
-			
+		int[] starts, ends, ret;
+		int temp;
+		bool snull, enull;
+		
+		for(int i = 0; i <= inst.which_locatable[start]; i++) {
+			for(int j = 0; j < inst.locatables[start].length; j++) {
+				if(!snull) {
+					temp = test_and_locate(inst.locatables[start][j], true);
+				} else {
+					temp = test_and_locate(inst.locatables[start][j], true, starts[$-1]);
+				}
+				
+				if(temp != -1) {
+					starts ~= temp;
+				}
+			}
+			snull = true;
+			ArrayMethods.sort(starts);
+		}
+		
+		ret ~= starts[inst.which_locatable[start]];
+		
+		for(int i = 0; i <= inst.which_locatable[end]; i++) {
+			for(int j = 0; j < inst.locatables[end].length; j++) {
+				if(!enull) {
+					temp = test_and_locate(inst.locatables[end][j], false, ret[0]);
+				} else {
+					temp = test_and_locate(inst.locatables[end][j], false, ends[$-1]);
+				}
+				
+				if(temp != -1) {
+					ends ~= temp;
+				}
+			}
+			enull = true;
+			ArrayMethods.sort(ends);
+		}
+		
+		ret ~= ends[inst.which_locatable[end]];
+		
 		return ret;
 	}
 		
