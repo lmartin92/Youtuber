@@ -140,43 +140,32 @@ private:
 			}
 			
 			return ret;
-		}
+		}		
 		
-		int[] starts, ends, ret;
-		int temp;
-		bool snull, enull;
-		int last = 0;
-		
-		for(int i = 0; i <= inst.which_locatable[start]; i++) {
-			last = starts.length > 0 ? starts[starts.length - 1] : 0;
-			for(int j = 0; j < inst.locatables[start].length; j++) {
-				temp = test_and_locate(inst.locatables[start][j], true, last);
-				if(temp != -1) {
-					starts ~= temp;
+		int[] locate(placement place, bool add_length = true, int loc = 0) {
+			int[] ret;
+			int temp;
+			int last = 0;
+			
+			for(int i = 0; i <= inst.which_locatable[place]; i++) {
+				last = ret.length > 0 ? ret[ret.length - 1] : loc;
+				for(int j = 0; j < inst.locatables[place].length; j++) {
+					temp = test_and_locate(inst.locatables[place][j], add_length, last);
+					if(temp != -1) {
+						ret ~= temp;
+					}
 				}
+				ArrayMethods.sort(ret);
 			}
-			snull = true;
-			ArrayMethods.sort(starts);
+			
+			return ret;
 		}
 		
+		int[] ret, starts, ends;
+		
+		starts = locate(start);
 		ret ~= starts[inst.which_locatable[start]];
-		
-		for(int i = 0; i <= inst.which_locatable[end]; i++) {
-			for(int j = 0; j < inst.locatables[end].length; j++) {
-				if(!enull) {
-					temp = test_and_locate(inst.locatables[end][j], false, ret[0]);
-				} else {
-					temp = test_and_locate(inst.locatables[end][j], false, ends[$-1]);
-				}
-				
-				if(temp != -1) {
-					ends ~= temp;
-				}
-			}
-			enull = true;
-			ArrayMethods.sort(ends);
-		}
-		
+		ends = locate(end, false, ret[0]);
 		ret ~= ends[inst.which_locatable[end]];
 		
 		return ret;
