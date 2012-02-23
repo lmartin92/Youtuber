@@ -145,15 +145,12 @@ private:
 		int[] starts, ends, ret;
 		int temp;
 		bool snull, enull;
+		int last = 0;
 		
 		for(int i = 0; i <= inst.which_locatable[start]; i++) {
+			last = starts.length > 0 ? starts[starts.length - 1] : 0;
 			for(int j = 0; j < inst.locatables[start].length; j++) {
-				if(!snull) {
-					temp = test_and_locate(inst.locatables[start][j], true);
-				} else {
-					temp = test_and_locate(inst.locatables[start][j], true, starts[$-1]);
-				}
-				
+				temp = test_and_locate(inst.locatables[start][j], true, last);
 				if(temp != -1) {
 					starts ~= temp;
 				}
