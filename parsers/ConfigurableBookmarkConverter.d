@@ -127,22 +127,22 @@ private:
 	char[] 		_actual_name;
 	instruction inst;
 	
-	int[] pull_loc(placement start, placement end) {
-		// test if it is in there, if so give location
-		int test_and_locate(char[] loc, bool add_length = false, int start = 0) {
-			int ret = -1;
-			
-			if(containsPattern(_line, loc)) {
-				ret = locatePattern(_line, loc, start);
+	int[] pull_loc(placement start, placement end) {		
+		int[] locate(placement place, bool add_length = true, int loc = 0) {
+			// test if it is in there, if so give location
+			int test_and_locate(char[] loc, bool add_length = false, int start = 0) {
+				int ret = -1;
 				
-				if(add_length)
-					ret += loc.length;
+				if(containsPattern(_line, loc)) {
+					ret = locatePattern(_line, loc, start);
+					
+					if(add_length)
+						ret += loc.length;
+				}
+				
+				return ret;
 			}
 			
-			return ret;
-		}		
-		
-		int[] locate(placement place, bool add_length = true, int loc = 0) {
 			int[] ret;
 			int temp;
 			int last = 0;
