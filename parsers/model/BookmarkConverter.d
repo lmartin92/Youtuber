@@ -15,21 +15,6 @@ public:
 	BookmarkLine[] get();
 }
 
-class UrlParser {
-	static char[] parse_actual_name(char[] url) {
-		char[] test = "\"";
-		
-		if(containsPattern(url, "&feature"))
-			test  = "&feature";
-		
-		int as, ae;
-		as = locatePattern(url, "watch?v=") + 8;
-		ae = locatePattern(url, test, as);	
-		
-		return url[as .. ae];
-	}
-}
-
 class BookmarkDeduplicator{
 	BookmarkLine[] source;
 	BookmarkLine[] test;

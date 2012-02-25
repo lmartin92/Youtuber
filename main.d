@@ -101,7 +101,8 @@ private:
 		
 	char[] get_bookmarks_file() {
 		char[] ret;
-		auto scan = new FileScan;	
+		auto scan = new FileScan;
+			
 		scan(expandTilde("~/Documents/"), ".html");
 	
 		foreach(f; scan.files) {
@@ -110,16 +111,7 @@ private:
 				break;
 			}   
 		}
-		
-		scan(expandTilde("~/Documents/"), ".html");
-	
-		foreach(f; scan.files) {
-			if(containsPattern(f.toString, "bookmarks")) { 
-				ret = f.toString;
-				break;
-			}   
-		}
-		
+
 		if(ret == "") { 
 			ret = homeFolder ~ "/.config/google-chrome/Default/Bookmarks";		
 		}
